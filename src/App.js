@@ -3,6 +3,7 @@ import Person from './Persons/Persons'
 import styled from 'styled-components'
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
+
 const StyledButton = styled.button`
   margin: 10px;
   background-color: ${props => props.hover ? 'green' : 'red'};
@@ -98,14 +99,14 @@ class App extends Component {
     }
 
     return (
-        <div style = {{textAlign: "center"}}>
-          <header>
-            <h1>This is a Class Based Component</h1>
-            <StyledButton key={'qwe213'} hover={this.state.showPersons} onClick={this.switchNamesHandler}>Switch Names</StyledButton>
-            <StyledButton key={'asd456'} hover={this.state.showPersons} onClick={this.togglePersonsNames}>Toggle Persons</StyledButton>
-            {persons}
-          </header>
-        </div>
+      <div style = {{textAlign: "center"}}>
+        <header>
+          <h1>This is a Class Based Component</h1>
+          <StyledButton key={'qwe213'} hover={this.state.showPersons} onClick={this.switchNamesHandler}>Switch Names</StyledButton>
+          <StyledButton key={'asd456'} hover={this.state.showPersons} onClick={this.togglePersonsNames}>Toggle Persons</StyledButton>
+          {persons}
+        </header>
+      </div>
     );
   }
 }
