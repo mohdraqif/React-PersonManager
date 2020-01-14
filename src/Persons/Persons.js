@@ -16,6 +16,12 @@ const StyledDiv = styled.div`
 `
 
 const Person = props => {
+  
+  // const random = Math.random()
+  // if(random > 0.7) {
+  //   throw new Error('Something Went Wrong!!!')
+  // }
+
   return (
     <StyledDiv>
       <p onClick={props.delete}>I am {props.name}. My age is {props.age}.</p>

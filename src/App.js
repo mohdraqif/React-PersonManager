@@ -1,23 +1,24 @@
 import React, { Component } from 'react'
 import Person from './Persons/Persons'
-import styled from 'styled-components'
+// import styled from 'styled-components'
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
+// const StyledButton = styled.button`
+//   margin: 10px;
+//   background-color: ${props => props.colour ? 'green' : 'red'};
+//   color: white;
+//   font: inherit;
+//   border: 1px solid gray;
+//   padding: 8px;
+//   cursor: pointer;
+//   box-shadow: 0 2px 3px rgb(161, 159, 159);
 
-const StyledButton = styled.button`
-  margin: 10px;
-  background-color: ${props => props.alt ? 'green' : 'red'};
-  color: white;
-  font: inherit;
-  border: 1px solid gray;
-  padding: 8px;
-  cursor: pointer;
-  box-shadow: 0 2px 3px rgb(161, 159, 159);
-
-  &:hover {
-    background-color: ${props => props.alt ? 'lightgreen' : 'salmon'};
-    color: black;
-  }
-`
+//   &:hover {
+//     background-color: ${props => props.colour ? 'lightgreen' : 'salmon'};
+//     color: black;
+//     transition: background-color .15s ease-in;
+//   }
+// `
 
 class App extends Component {
   state = {
@@ -84,12 +85,14 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons.map((each, index) => {
-            return <h3 key={each.id}><Person 
-              name={each.name} age={each.age} 
-              change={(event) => this.changeNamesHandler(event, each.id)} 
-              delete={() => this.deletePersonHandler(index)}>My Hobby is {each.hobby}.
-            </Person></h3>
-          })}
+            return <ErrorBoundary key={each.id}>
+              <h3><Person 
+                name={each.name} age={each.age} 
+                change={(event) => this.changeNamesHandler(event, each.id)} 
+                delete={() => this.deletePersonHandler(index)}>My Hobby is {each.hobby}.
+              </Person></h3>
+            </ErrorBoundary>
+          })}  
           </div>
       )
     }
@@ -105,10 +108,10 @@ class App extends Component {
     return (
         <div style = {{textAlign: "center"}}>
           <header>
-            <h1 >This is a Class Based Component</h1>
+            <h1>This is a Class Based Component</h1>
             <p className={classes.join(' ')}>You deleted a Person</p>
-            <StyledButton key={'qwe213'} alt={this.state.showPersons} onClick={this.switchNamesHandler}>Switch Names</StyledButton>
-            <StyledButton key={'asd456'} alt={this.state.showPersons} onClick={this.togglePersonsNames}>Toggle Persons</StyledButton>
+            <button key={'qwe213'} className='button' onClick={this.switchNamesHandler}>Switch Names</button>
+            <button key={'asd456'} onClick={this.togglePersonsNames}>Toggle Persons</button>
             {persons}
           </header>
         </div>
