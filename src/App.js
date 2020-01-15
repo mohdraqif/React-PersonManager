@@ -6,7 +6,7 @@ import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
 const StyledButton = styled.button`
   margin: 10px;
-  background-color: ${props => props.hover ? 'green' : 'red'};
+  background-color: ${props => props.hoverColor ? 'green' : 'red'};
   color: white;
   font: inherit;
   border: 1px solid gray;
@@ -15,7 +15,7 @@ const StyledButton = styled.button`
   box-shadow: 0 2px 3px rgb(161, 159, 159);
 
   &:hover {
-    background-color: ${props => props.hover ? 'lightgreen' : 'salmon'};
+    background-color: ${props => props.hoverColor ? 'lightgreen' : 'salmon'};
     color: black;
     transition: background-color .15s ease-in;
   }
@@ -102,8 +102,8 @@ class App extends Component {
       <div style = {{textAlign: "center"}}>
         <header>
           <h1>This is a Class Based Component</h1>
-          <StyledButton key={'qwe213'} hover={this.state.showPersons} onClick={this.switchNamesHandler}>Switch Names</StyledButton>
-          <StyledButton key={'asd456'} hover={this.state.showPersons} onClick={this.togglePersonsNames}>Toggle Persons</StyledButton>
+          <StyledButton key={'qwe213'} hoverColor={this.state.showPersons} onClick={this.switchNamesHandler}>Switch Names</StyledButton>
+          <StyledButton key={'asd456'} hoverColor={this.state.showPersons} onClick={this.togglePersonsNames}>Toggle Persons</StyledButton>
           {persons}
         </header>
       </div>
