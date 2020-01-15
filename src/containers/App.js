@@ -65,12 +65,13 @@ class App extends Component {
     let persons = null
     if(this.state.showPersons) {
       persons = <PERSONS 
-        persons={this.state.persons} change={this.changeNamesHandler} delete={this.deletePersonHandler}/>
+        persons={this.state.persons} change={this.changeNamesHandler} delete={this.deletePersonHandler} />
     }
 
     return (
       <div className={classes.App}>
-        <Cockpit showPersons={this.state.showPersons} switch={this.switchNamesHandler} toggle={this.togglePersonsNames}/>
+        <Cockpit title={this.props.appTitle} showPersons={this.state.showPersons} 
+          switch={this.switchNamesHandler} toggle={this.togglePersonsNames} />
         {persons}
       </div>
     );
