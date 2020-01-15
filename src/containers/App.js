@@ -1,25 +1,7 @@
 import React, { Component } from 'react'
-import Person from '../components/Persons/Person/Persons'
-import styled from 'styled-components'
+import Person from '../components/Persons/Persons'
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
-
-
-const StyledButton = styled.button`
-  margin: 10px;
-  background-color: ${props => props.hoverColor ? 'green' : 'red'};
-  color: white;
-  font: inherit;
-  border: 1px solid gray;
-  padding: 8px;
-  cursor: pointer;
-  box-shadow: 0 2px 3px rgb(161, 159, 159);
-
-  &:hover {
-    background-color: ${props => props.hoverColor ? 'lightgreen' : 'salmon'};
-    color: black;
-    transition: background-color .15s ease-in;
-  }
-`
+import classes from '../containers/App.css'
 
 class App extends Component {
   state = {
@@ -81,6 +63,7 @@ class App extends Component {
 
   render() {
     let persons = null
+    let btnClass = ''
 
     if(this.state.showPersons) {
       persons = (
@@ -96,14 +79,15 @@ class App extends Component {
           })}  
           </div>
       )
+      btnClass = classes.Green
     }
 
     return (
-      <div style = {{textAlign: "center"}}>
+      <div className={classes.App}>
         <header>
           <h1>This is a Class Based Component</h1>
-          <StyledButton key={'qwe213'} hoverColor={this.state.showPersons} onClick={this.switchNamesHandler}>Switch Names</StyledButton>
-          <StyledButton key={'asd456'} hoverColor={this.state.showPersons} onClick={this.togglePersonsNames}>Toggle Persons</StyledButton>
+          <button key={'qwe213'} className={btnClass} onClick={this.switchNamesHandler}>Switch Names</button>
+          <button key={'asd456'} className={btnClass} onClick={this.togglePersonsNames}>Toggle Persons</button>
           {persons}
         </header>
       </div>
