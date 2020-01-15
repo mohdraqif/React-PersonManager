@@ -1,21 +1,18 @@
 import React from 'react'
-import classes from './Person.css'
+import classes from './Person/Person.css'
+import Person from './Person/Person'
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 
 
 
-const Person = props => {
+const PERSONS = props => props.persons.map((each, index) => {
+    return <ErrorBoundary key={each.id} className={classes.Person}>
+      <h3><Person 
+        name={each.name} age={each.age} 
+        change={(event) => props.change(event, each.id)} 
+        delete={() => props.delete(index)}>My Hobby is {each.hobby}.
+      </Person></h3>
+    </ErrorBoundary>
+  })
 
-  // const random = Math.random()
-  // if(random > 0.7) {
-  //   throw new Error('Something Went Wrong!!!')
-  // }
-  return (
-    <div className={classes.Person}>
-      <p onClick={props.delete}>I am {props.name}. My age is {props.age}.</p>
-      <p>{props.children}</p>
-      <input type="text" value={props.name} onChange={props.change}/>
-    </div>
-  )
-}
-
-export default Person
+export default PERSONS

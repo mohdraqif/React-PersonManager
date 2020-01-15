@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Person from '../components/Persons/Persons'
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 import classes from '../containers/App.css'
+import PERSONS from '../components/Persons/PERSONS'
+import Cockpit from '../components/Cockpit/Cockpit'
 
 class App extends Component {
   state = {
@@ -63,33 +63,15 @@ class App extends Component {
 
   render() {
     let persons = null
-    let btnClass = ''
-
     if(this.state.showPersons) {
-      persons = (
-        <div>
-          {this.state.persons.map((each, index) => {
-            return <ErrorBoundary key={each.id}>
-              <h3><Person 
-                name={each.name} age={each.age} 
-                change={(event) => this.changeNamesHandler(event, each.id)} 
-                delete={() => this.deletePersonHandler(index)}>My Hobby is {each.hobby}.
-              </Person></h3>
-            </ErrorBoundary>
-          })}  
-          </div>
-      )
-      btnClass = classes.Green
+      persons = <PERSONS 
+        persons={this.state.persons} change={this.changeNamesHandler} delete={this.deletePersonHandler}/>
     }
 
     return (
       <div className={classes.App}>
-        <header>
-          <h1>This is a Class Based Component</h1>
-          <button key={'qwe213'} className={btnClass} onClick={this.switchNamesHandler}>Switch Names</button>
-          <button key={'asd456'} className={btnClass} onClick={this.togglePersonsNames}>Toggle Persons</button>
-          {persons}
-        </header>
+        <Cockpit showPersons={this.state.showPersons} switch={this.switchNamesHandler} toggle={this.togglePersonsNames}/>
+        {persons}
       </div>
     );
   }
