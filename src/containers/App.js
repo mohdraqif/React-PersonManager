@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Person from './Persons/Persons'
+import Person from '../components/Persons/Person/Persons'
 import styled from 'styled-components'
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 
 
 const StyledButton = styled.button`
