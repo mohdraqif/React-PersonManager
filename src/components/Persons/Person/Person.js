@@ -1,21 +1,39 @@
-import React from 'react'
-import classes from './Person.css'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Aux from '../../../hoc/Auxiliary';
+import withClass from '../../../hoc/WithClass';
+import classes from './Person.css';
+import AuthContext from '../../../context/auth-context';
 
 
+class Person extends Component {
+  static contextType = AuthContext;
 
-const Person = props => {
+  componentDidMount() {
+    // this.inputElement.focus();
+    console.log(this.context.authenticated);
+  }
 
-  // const random = Math.random()
-  // if(random > 0.7) {
-  //   throw new Error('Something Went Wrong!!!')
-  // }
-  return (
-    <div className={classes.Person}>
-      <p onClick={props.delete}>I am {props.name}. My age is {props.age}.</p>
-      <p>{props.children}</p>
-      <input type="text" value={props.name} onChange={props.change}/>
-    </div>
-  )
+  render() {
+    console.log('[Person.js] rendering...');
+    return (
+      <Aux>
+      {this.context.authenticated ? 
+        (<p>Authenticated!</p>) : (<p>Please log in</p>)}
+
+        <p onClick={this.props.delete}>I am {this.props.name}. My age is {this.props.age}.</p>
+        <p>{this.props.children}</p>
+        <input type="text" value={this.props.name} onChange={this.props.change}/>
+      </Aux>
+    )
+  }
 }
 
-export default Person
+Person.propTypes = {
+  delete: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  change: PropTypes.func
+};
+
+export default withClass(Person, classes.Person);
