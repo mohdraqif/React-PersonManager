@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Cockpit.css';
 
 
-const Cockpit = props  => {
+const Cockpit = props => {
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect.')
+
+    setTimeout(() => {
+      alert('Welcome to Person Manager App!')
+    }, 1000);
+    
+    return () => {
+      console.log('[Cockpit.js] Clean up worked')
+    }
+  }, [])
+
     let btnClass = ''
     if(props.showPersons) {
       btnClass = classes.Green
