@@ -93,8 +93,8 @@
   },
   "devDependencies": {
     "braces": "^3.0.2",
-    "eslint": "^4.10.0",
+    "eslint": "^6.8.0",
     "mem": "^6.0.1",
-    "webpack-dev-server": "^2.11.5"
+    "webpack-dev-server": "^3.10.3"
   }
 }
